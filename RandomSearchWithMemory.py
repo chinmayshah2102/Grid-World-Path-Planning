@@ -3,13 +3,14 @@ from generateMapProperties import genGridProp
 import random as rd
  
  
-def Search(world_state, robot_pose, goal_pose):
+def Search(world_state, robot_pose, goal_pose, number_of_actions):
     
     MapProperties = genGridProp(world_state)
     barriers = MapProperties.barriers
     
     max_step_number = 200
-    #defining Memory size
+    
+    #Defining Memory size
     memory_length = int(round(np.sqrt(max_step_number)))
     
     currPos = robot_pose
@@ -22,7 +23,7 @@ def Search(world_state, robot_pose, goal_pose):
             #Generate memory for each step
             memory = path[-min(memory_length,len(path)):]
             possible_motion = []
-            possibleNeighbours = MapProperties.NeighbourVertices(currPos, world_state, 4)
+            possibleNeighbours = MapProperties.NeighbourVertices(currPos, world_state, number_of_actions)
             actualNeighbours = []
             
             for neighbour in possibleNeighbours:
