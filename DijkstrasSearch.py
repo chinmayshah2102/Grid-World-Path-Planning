@@ -1,6 +1,6 @@
 from generateMapProperties import genGridProp
  
-def Search(world_state, robot_pose, goalPos):
+def Search(world_state, robot_pose, goalPos, number_of_actions):
     
     MapProperties = genGridProp(world_state)
     
@@ -10,11 +10,11 @@ def Search(world_state, robot_pose, goalPos):
     OpenList = set([robot_pose])
     ParentNode = {}
  
-    #Actual movement cost from start to current position
+    #Actual movement cost from current to next position
     MovementCost = {} 
     MovementCost[robot_pose] = 0 
     
-    #Estimated total cost from current to goal position
+    #Total cost from start to current position
     TotalCost = {} 
     TotalCost[robot_pose] = 0
  
@@ -44,7 +44,7 @@ def Search(world_state, robot_pose, goalPos):
                 return path                
  
         #Generate costs for neighboring vertices for the current position
-        for neighbour in MapProperties.NeighbourVertices(currPos, world_state, 4):
+        for neighbour in MapProperties.NeighbourVertices(currPos, world_state, number_of_actions):
             
             if neighbour in ClosedList: 
                 continue 
@@ -59,7 +59,7 @@ def Search(world_state, robot_pose, goalPos):
             MovementCost[neighbour] = Gcost
             TotalCost[neighbour] = MovementCost[neighbour] 
         
-        #Append the current state to closed vertices and remove the same from open vertices
+        #Append the current state to closed list and remove the same from open list
         OpenList.remove(currPos)
         ClosedList.add(currPos)
         
