@@ -1,6 +1,6 @@
 from generateMapProperties import genGridProp
  
-def Search(world_state, robot_pose, goalPos):
+def Search(world_state, robot_pose, goalPos, number_of_actions):
     
     MapProperties = genGridProp(world_state)
     
@@ -44,7 +44,7 @@ def Search(world_state, robot_pose, goalPos):
                 return path                
  
         #Generate costs for neighboring vertices for the current position
-        for neighbour in MapProperties.NeighbourVertices(currPos, world_state, 4):
+        for neighbour in MapProperties.NeighbourVertices(currPos, world_state, number_of_actions):
             
             if neighbour in ClosedList: 
                 continue 
