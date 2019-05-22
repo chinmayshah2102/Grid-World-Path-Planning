@@ -11,7 +11,7 @@ class genGridProp(object):
     
     def NeighbourVertices(self, currPos, world_state, number_of_neighbour):
         n = []
-        #Define neighbour based on types of movements allowed (Orthogonal(4 neighbours) or King's moves(8 neighbours))
+        #Define neighbours based on types of movements allowed (Orthogonal(4 neighbours) or King's moves(8 neighbours))
         if number_of_neighbour == 4:
             for dx, dy in [(1,0),(-1,0),(0,1),(0,-1)]:
                 x2 = currPos[0] + dx
