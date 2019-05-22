@@ -60,7 +60,7 @@ def Search(world_state, robot_pose, goalPos, number_of_actions):
             HeuristicCost = MapProperties.Mdist_heuristic(neighbour, goalPos)
             TotalCost[neighbour] = MovementCost[neighbour] + HeuristicCost
         
-        #Append the current state to closed vertices and remove the same from open vertices
+        #Append the current state to closed list and remove the same from open list
         OpenList.remove(currPos)
         ClosedList.add(currPos)
         
